@@ -265,10 +265,12 @@ the inspiration to this, and some handy implementation hints, came to James.
       val = val.replace(/<equation>((.*?\n)*?.*?)<\/equation>/ig, function(a, b){
         return '<img src="http://latex.codecogs.com/png.latex?' + encodeURIComponent(b) + '" />';
       });
-	  var title = getFrontMatterTitle(val);
-      val = val.replace(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/, ""); // ignore YAML front matter
-	  if (title)
-		val = title + "\n===\n" + val; // inline with what some layouts do inside Jekyll
+      var title = getFrontMatterTitle(val);
+      var head = '';
+      if (!title || title.trim() == '') {
+      	head = title + "\n===\n";
+      }
+      val = val.replace(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/, head); // ignore YAML front matter
       document.getElementById('out').innerHTML = marked(val);
     }
 
@@ -349,6 +351,7 @@ the inspiration to this, and some handy implementation hints, came to James.
 	function getFrontMatterTitle(text) {
 		if (!text)
 			return text;
+		var title = '';
 		var matches = text.match(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/);
 		if (matches) {
 			matches.forEach(function (item) { 
@@ -370,7 +373,7 @@ the inspiration to this, and some handy implementation hints, came to James.
 		if ((!text) || text.trim() == '')
 			return "untitled.md";
 		var title = getFrontMatterTitle(text);
-		if (!title) {
+		if (!title || title.trim() == '') {
 			var lineEnd = text.indexOf("\n");
 			if (lineEnd > 1)
 				title = text.substring(0, lineEnd);
