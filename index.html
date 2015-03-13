@@ -267,7 +267,7 @@ the inspiration to this, and some handy implementation hints, came to James.
       });
       var title = getFrontMatterTitle(val);
       var head = '';
-      if (!title || title.trim() == '') {
+      if (title && title.trim() != '') {
       	head = title + "\n===\n";
       }
       val = val.replace(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/, head); // ignore YAML front matter
@@ -354,11 +354,13 @@ the inspiration to this, and some handy implementation hints, came to James.
 		var title = '';
 		var matches = text.match(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/);
 		if (matches) {
+			var found = false;
 			matches.forEach(function (item) { 
-				var found = false;
 				if (item && !found) {
 					var lines = item.split('\n');
 					lines.forEach(function (line) { 
+						if (found)
+							return;
 						if (line && line.trim().startsWith('title')) {
 							title = line.split(':')[1].trim();
 							found = true;
