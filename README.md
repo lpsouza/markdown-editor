@@ -1,9 +1,9 @@
 # Live (GitHub-Flavored) Markdown Editor with YAML Front Matter Support
 
-[Use it here](//monoman.github.io/markdown-editor)
+[Use it here](https://luizsouza.com/markdown-editor)
 
-License:BSD
------------
+## License: BSD
+
 _(Previously [WTFPL](http://www.wtfpl.net/txt/copying/))_
 
 Copyright (c) 2015 Rafael Teixeira. All rights reserved.
