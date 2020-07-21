@@ -49,7 +49,7 @@
 .CodeMirror-gutter {
   position: absolute; left: 0; top: 0;
   z-index: 10;
-  background-color: #f7f7f7;
+  background-color: #333;
   border-right: 1px solid #eee;
   min-width: 2em;
   height: 100%;
@@ -99,7 +99,7 @@
   z-index: 10;
   position: absolute;
   visibility: hidden;
-  border-left: 1px solid black;
+  border-left: 1px solid #ccc;
   border-right: none;
   width: 0;
 }
@@ -139,7 +139,7 @@ div.CodeMirror-selected { background: #d9d9d9; }
 .cm-s-default span.cm-property {color: black;}
 .cm-s-default span.cm-operator {color: black;}
 .cm-s-default span.cm-comment {color: #a50;}
-.cm-s-default span.cm-string {color: #a11;}
+.cm-s-default span.cm-string {color: #a66;}
 .cm-s-default span.cm-string-2 {color: #f50;}
 .cm-s-default span.cm-meta {color: #555;}
 .cm-s-default span.cm-error {color: #f00;}
