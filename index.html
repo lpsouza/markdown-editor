@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Markdown Editor</title>
   <script src="marked.js"></script>
@@ -15,10 +16,12 @@
   <link rel="stylesheet" href="codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="default.css">
   <style>
-    .CodeMirror pre{
+    .CodeMirror pre {
       line-height: 14px;
     }
-    #in, .CodeMirror{
+
+    #in,
+    .CodeMirror {
       position: fixed;
       top: 0;
       left: 0;
@@ -26,14 +29,17 @@
       width: 50%;
       overflow: auto;
       font-size: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      background-color: #333;
+      color: #ccc;
     }
+
     .CodeMirror-scroll {
       height: 100%;
       min-height: 100%;
     }
 
-    #out{
+    #out {
       position: fixed;
       top: 0;
       right: 0;
@@ -42,7 +48,8 @@
       overflow: auto;
       padding: 10px;
       padding-left: 20px;
-      color: #444;
+      color: #ccc;
+      background-color: #333;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 16px;
       line-height: 1.35em
@@ -52,6 +59,7 @@
       #in {
         display: none;
       }
+
       #out {
         left: 0;
         padding-left: 10px;
@@ -61,165 +69,173 @@
     .view #in {
       display: none;
     }
+
     .view #out {
       left: 0;
       padding-left: 10px;
     }
 
-    a{ color: #0645ad; text-decoration:none;}
-    a:visited{ color: #0b0080; }
-    a:hover{ color: #06e; }
-    a:active{ color:#faa700; }
-    a:focus{ outline: thin dotted; }
-    a:hover, a:active{ outline: 0; }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
 
-    p{margin:1em 0;}
+    a:visited {
+      color: #0b0080;
+    }
 
-    img{max-width:100%;}
+    a:hover {
+      color: #06e;
+    }
 
-    h1,h2,h3,h4,h5,h6 {
-	  font-family: 'Open Sans', sans-serif;
-	  line-height: 1.05em;
-	}
+    a:active {
+      color: #faa700;
+    }
 
-    blockquote{color:#666666;margin:0;padding-left: 3em;border-left: 0.5em #EEE solid;}
-    hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+    a:focus {
+      outline: thin dotted;
+    }
 
-    pre, code{
+    a:hover,
+    a:active {
+      outline: 0;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.05em;
+    }
+
+    blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+    }
+
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    pre,
+    code {
       color: #000;
       font-family: monospace;
       font-size: 0.88em;
-      border-radius:3px;
+      border-radius: 3px;
       background-color: #F8F8F8;
       border: 1px solid #CCC;
     }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px;}
-    pre code { border: 0px !important; background: transparent !important; line-height: 1.3em; }
-    code { padding: 0 3px 0 3px; }
-    sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-    sup { top: -0.5em; }
-    sub { bottom: -0.25em; }
-    ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
-    li p:last-child { margin:0 }
-    dd { margin: 0 0 0 2em; }
-    img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
-    table { border-collapse: collapse; border-spacing: 0; }
-    td, th { vertical-align: top; padding: 4px 10px; border: 1px solid #bbb; }
-    tr:nth-child(even) td, tr:nth-child(even) th { background: #eee; }
+
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      padding: 5px;
+    }
+
+    pre code {
+      border: 0px !important;
+      background: transparent !important;
+      line-height: 1.3em;
+    }
+
+    code {
+      padding: 0 3px 0 3px;
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    sup {
+      top: -0.5em;
+    }
+
+    sub {
+      bottom: -0.25em;
+    }
+
+    ul,
+    ol {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+
+    li p:last-child {
+      margin: 0
+    }
+
+    dd {
+      margin: 0 0 0 2em;
+    }
+
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td,
+    th {
+      vertical-align: top;
+      padding: 4px 10px;
+      border: 1px solid #bbb;
+    }
+
+    tr:nth-child(even) td,
+    tr:nth-child(even) th {
+      background: #eee;
+    }
   </style>
 </head>
+
 <body>
-  <div id="in"><form><textarea id="code">---
- title: (GitHub-Flavored) Markdown Editor with YAML front matter support
+  <div id="in">
+    <form><textarea id="code">---
+author: author
+category: Blogging
+date: 1900-01-01 00:00 -0300
+layout: post
+published: true
+tags:
+- Markdown
+title: A lovely title
 ---
 
-Features List
----
+And your story begin here...
 
- * Ctrl/Cmd + S to save the file
- * Title front matter becomes filename
- * Drag and drop a file into here to load it
- * File contents are saved in the URL so you can share files
-
-Examples from  [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
----
-
-### Multiple underscores in words
-
-"Normal" Markdown transforms underscores (_) into italics, such that wow_great_stuff becomes wow<i>great</i>stuff.
-
-It is not reasonable to italicize just part of a word, especially when you're dealing with code and names often appear with multiple underscores. Therefore, GFM ignores underscores in words, like this:
-
- * wow_great_stuff
- * do_this_and_do_that_and_another_thing.
-
-### URL autolinking
-
-GFM will autolink standard URLs, so if you want to link to a URL (instead of setting link text), you can simply enter the URL and it will be turned into a link to that URL.
-
-So that ```http://example.com``` becomes http://example.com
-
-### Strikethrough
-
-GFM adds syntax to create strikethrough text, which is missing from standard Markdown.
-
-So that ```~~Mistaken text.~~``` becomes ~~Mistaken text.~~
-
-### Fenced code blocks
-
-Standard Markdown converts text with four spaces at the beginning of each line into a code block; GFM also supports fenced blocks. Just wrap your code in ``` (as shown below) and you won't need to indent it by four spaces. Note that although fenced code blocks don't have to be preceded by a blank line—unlike indented code blocks—we recommend placing a blank line before them to make the raw Markdown easier to read.
-
-Here's an example:
-
-```
-function test() {
-  console.log("notice the blank line before this function?");
-}
-```
-Keep in mind that, within lists, you must indent non-fenced code blocks eight spaces to render them properly.
-
-### Syntax highlighting
-
-Code blocks can be taken a step further by adding syntax highlighting. In your fenced block, add an optional language identifier and we'll run it through syntax highlighting. For example, to syntax highlight Ruby code:
-
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
-We use Linguist to perform language detection and syntax highlighting. You can find out which keywords are valid by perusing the languages YAML file.
-
-And here's some javascript code!
-
-```javascript
-$(function(){
-  $('div').html('I am a div.');
-});
-```
-
-### Tables
-
-You can create tables by assembling a list of words and dividing them with hyphens - (for the first row), and then separating each column with a pipe | , and you can also add extra pipes on the ends:
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-You can also include inline Markdown such as links, bold, italics, or strikethrough:
-
-| Name | Description          |
-| ------------- | ----------- |
-| Help      | ~~Display the~~ help window.|
-| Close     | _Closes_ a window     |
-
-Finally, by including colons : within the header row, you can define text to be left-aligned, right-aligned, or center-aligned:
-
-| Left-Aligned  | Center Aligned  | Right Aligned |
-| :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
-
-A colon on the left-most side indicates a left-aligned column; a colon on the right-most side indicates a right-aligned column; a colon on both sides indicates a center-aligned column.
-
-This fork is [on GitHub](https://github.com/monoman/markdown-editor).
-
-Thanks
----
-
-Thanks to [James Taylor](https://github.com/jbt) who created this thing. :)
-
-Props to Mr. Doob and his [code editor](http://mrdoob.com/projects/code-editor/), from which
-the inspiration to this, and some handy implementation hints, came to James.
-
-### Stuff used to make this:
- * [marked](https://github.com/chjj) for Markdown parsing
- * [CodeMirror](http://codemirror.net/) for the awesome syntax-highlighted editor
- * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
- * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
-
-</textarea></form></div>
+... to save this file press **Ctrl + S**
+</textarea></form>
+  </div>
   <div id="out"></div>
 
   <script>
@@ -227,18 +243,18 @@ the inspiration to this, and some handy implementation hints, came to James.
     navigator.saveBlob = navigator.saveBlob || navigator.msSaveBlob || navigator.mozSaveBlob || navigator.webkitSaveBlob;
     window.saveAs = window.saveAs || window.webkitSaveAs || window.mozSaveAs || window.msSaveAs;
 
-	if (!String.prototype.startsWith) {
-	  Object.defineProperty(String.prototype, 'startsWith', {
-		enumerable: false,
-		configurable: false,
-		writable: false,
-		value: function(searchString, position) {
-		  position = position || 0;
-		  return this.lastIndexOf(searchString, position) === position;
-		}
-	  });
-	}
-	
+    if (!String.prototype.startsWith) {
+      Object.defineProperty(String.prototype, 'startsWith', {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: function (searchString, position) {
+          position = position || 0;
+          return this.lastIndexOf(searchString, position) === position;
+        }
+      });
+    }
+
     // Because highlight.js is a bit awkward at times
     var languageOverrides = {
       js: 'javascript',
@@ -246,13 +262,13 @@ the inspiration to this, and some handy implementation hints, came to James.
     }
 
     marked.setOptions({
-      highlight: function(code, lang){
-        if(languageOverrides[lang]) lang = languageOverrides[lang];
+      highlight: function (code, lang) {
+        if (languageOverrides[lang]) lang = languageOverrides[lang];
         return hljs.LANGUAGES[lang] ? hljs.highlight(lang, code).value : code;
       }
     });
 
-    function update(e){
+    function update(e) {
       var val = e.getValue();
 
       setOutput(val);
@@ -261,14 +277,14 @@ the inspiration to this, and some handy implementation hints, came to James.
       hashto = setTimeout(updateHash, 1000);
     }
 
-    function setOutput(val){
-      val = val.replace(/<equation>((.*?\n)*?.*?)<\/equation>/ig, function(a, b){
+    function setOutput(val) {
+      val = val.replace(/<equation>((.*?\n)*?.*?)<\/equation>/ig, function (a, b) {
         return '<img src="http://latex.codecogs.com/png.latex?' + encodeURIComponent(b) + '" />';
       });
       var title = getFrontMatterTitle(val);
       var head = '';
       if (title && title.trim() != '') {
-      	head = title + "\n===\n";
+        head = title + "\n===\n";
       }
       val = val.replace(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/, head); // ignore YAML front matter
       document.getElementById('out').innerHTML = marked(val);
@@ -283,44 +299,44 @@ the inspiration to this, and some handy implementation hints, came to James.
       onChange: update
     });
 
-    document.addEventListener('drop', function(e){
+    document.addEventListener('drop', function (e) {
       e.preventDefault();
       e.stopPropagation();
 
       var theFile = e.dataTransfer.files[0];
       var theReader = new FileReader();
-      theReader.onload = function(e){
+      theReader.onload = function (e) {
         editor.setValue(e.target.result);
       };
 
       theReader.readAsText(theFile);
     }, false);
 
-    function save(){
+    function save() {
       var code = editor.getValue();
-	  var fileName = getFileNameFromTitle(code);
+      var fileName = getFileNameFromTitle(code);
       var blob = new Blob([code], { type: 'text/plain' });
       saveBlob(blob, fileName);
     }
 
-    function saveBlob(blob, name){
-      if(window.saveAs){
+    function saveBlob(blob, name) {
+      if (window.saveAs) {
         window.saveAs(blob, name);
-      }else if(navigator.saveBlob){
+      } else if (navigator.saveBlob) {
         navigator.saveBlob(blob, name);
-      }else{
+      } else {
         url = URL.createObjectURL(blob);
         var link = document.createElement("a");
-        link.setAttribute("href",url);
-        link.setAttribute("download",name);
+        link.setAttribute("href", url);
+        link.setAttribute("download", name);
         var event = document.createEvent('MouseEvents');
         event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
         link.dispatchEvent(event);
       }
     }
-	
-    document.addEventListener('keydown', function(e){
-      if(e.keyCode == 83 && (e.ctrlKey || e.metaKey)){
+
+    document.addEventListener('keydown', function (e) {
+      if (e.keyCode == 83 && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         save();
         return false;
@@ -329,66 +345,67 @@ the inspiration to this, and some handy implementation hints, came to James.
 
     var hashto;
 
-    function updateHash(){
+    function updateHash() {
       window.location.hash = btoa(RawDeflate.deflate(unescape(encodeURIComponent(editor.getValue()))))
     }
 
-    if(window.location.hash){
+    if (window.location.hash) {
       var h = window.location.hash.replace(/^#/, '');
-      if(h.slice(0,5) == 'view:'){
+      if (h.slice(0, 5) == 'view:') {
         setOutput(decodeURIComponent(escape(RawDeflate.inflate(atob(h.slice(5))))));
         document.body.className = 'view';
-      }else{
+      } else {
         editor.setValue(decodeURIComponent(escape(RawDeflate.inflate(atob(h)))))
         update(editor);
         editor.focus();
       }
-    }else{
+    } else {
       update(editor);
       editor.focus();
     }
 
-	function getFrontMatterTitle(text) {
-		if (!text)
-			return text;
-		var title = '';
-		var matches = text.match(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/);
-		if (matches) {
-			var found = false;
-			matches.forEach(function (item) { 
-				if (item && !found) {
-					var lines = item.split('\n');
-					lines.forEach(function (line) { 
-						if (found)
-							return;
-						if (line && line.trim().startsWith('title')) {
-							title = line.split(':')[1].trim();
-							found = true;
-						}
-					});
-				}
-			});
-		}
-		return title;
-	}
-	function getFileNameFromTitle(text) {
-		if ((!text) || text.trim() == '')
-			return "untitled.md";
-		var title = getFrontMatterTitle(text);
-		if (!title || title.trim() == '') {
-			var lineEnd = text.indexOf("\n");
-			if (lineEnd > 1)
-				title = text.substring(0, lineEnd);
-			else
-				title = text.substring(0, 250);
-		}
-		title = title.toLowerCase();
-		title = title.replace(/[\(\)<>*|^]+/g,"");
-		title = title.replace(/[\s:;,\\\/\?"]+/g,"-");
-		title = title.replace(/^-+|-+$/g, "");
-		title = title + ".md";
-		return title;
-	}
+    function getFrontMatterTitle(text) {
+      if (!text)
+        return text;
+      var title = '';
+      var matches = text.match(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/);
+      if (matches) {
+        var found = false;
+        matches.forEach(function (item) {
+          if (item && !found) {
+            var lines = item.split('\n');
+            lines.forEach(function (line) {
+              if (found)
+                return;
+              if (line && line.trim().startsWith('title')) {
+                title = line.split(':')[1].trim();
+                found = true;
+              }
+            });
+          }
+        });
+      }
+      return title;
+    }
+    function getFileNameFromTitle(text) {
+      if ((!text) || text.trim() == '')
+        return "untitled.md";
+      var title = getFrontMatterTitle(text);
+      if (!title || title.trim() == '') {
+        var lineEnd = text.indexOf("\n");
+        if (lineEnd > 1)
+          title = text.substring(0, lineEnd);
+        else
+          title = text.substring(0, 250);
+      }
+      title = title.toLowerCase();
+      title = title.replace(/[\(\)<>*|^]+/g, "");
+      title = title.replace(/[\s:;,\\\/\?"]+/g, "-");
+      title = title.replace(/^-+|-+$/g, "");
+      title = title + ".md";
+      return title;
+    }
   </script>
 </body>
+
 </html>
